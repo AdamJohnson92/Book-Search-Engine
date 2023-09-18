@@ -24,44 +24,40 @@ const SavedBooks = () => {
   const userDataLength = Object.keys(userData).length;
 
 
-  //MUST REMOVE USE EFFECT!
-  useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
+  // REMOVED USE EFFECT!
+  const getUserData = async () => {
+    try {
+      const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-        if (!token) {
-          return false;
-        }
-
-        const response = await getMe(token);
-
-        if (!response.ok) {
-          throw new Error('something went wrong!');
-        }
-
-        const user = await response.json();
-        setUserData(user);
-      } catch (err) {
-        console.error(err);
+      if (!token) {
+        return false;
       }
-    
-      
-    };
-  ///------HMMMMM????
-    const { me } = cache.readQuery({ query: GET_ME });
-      cache.writeQuery({
-        query: GET_ME,
-        data: { me: { ...me, books: [...me.books, saveBook] } },
-      });
 
-    getUserData();
-  }, [userDataLength]);
+      const response = await getMe(token);
+
+      if (!response.ok) {
+        throw new Error('something went wrong!');
+      }
+
+      const user = await response.json();
+      setUserData(user);
+    } catch (err) {
+      console.error(err);
+    }
+
+
+  };
+
+  getUserData();
+
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
+  
+  const [removeBook, { error }] = useMutation(REMOVE_BOOK);
+  
   const handleDeleteBook = async (bookId) => {
 
-    const [removeBook, { error }] = useMutation(REMOVE_BOOK);
+    
 
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -70,7 +66,7 @@ const SavedBooks = () => {
     }
 
     try {
-      const response = await deleteBook(bookId, token);
+      const response = await removeBook(bookId, token);
 
       if (!response.ok) {
         throw new Error('something went wrong!');

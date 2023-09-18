@@ -63,6 +63,8 @@ const SearchBooks = () => {
     }
   };
 
+ const [saveBook, { error }] = useMutation(SAVE_BOOK);
+ 
   // create function to handle saving a book to our database
   const handleSaveBook = async (bookId) => {
     // find the book in `searchedBooks` state by the matching id
@@ -70,7 +72,7 @@ const SearchBooks = () => {
     
 
     //----Does this correctly replace saveBook from the API?
-    const [saveBook, { error }] = useMutation(SAVE_BOOK);
+   
 
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
