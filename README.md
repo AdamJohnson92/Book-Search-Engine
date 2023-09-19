@@ -26,6 +26,13 @@
   Users can sign up for an account by entering a username, an email address, and a password. Once signed in, users can use the search bar to search for a book. The search may yield many results, so the user can peruse the options. The books are displayed with  the cover image, the title, and a description. Once they've found the book that they were searching for, the user can click the Save This Book button to add it's details to their book list. Users can view their saved books by clicking "See Your Books."
 
   ![alt text](./assets/screencap1.PNG)
+
+  GitHub Repository:
+  https://github.com/AdamJohnson92/Book-Search-Engine
+
+  Deployed Application:
+https://guarded-depths-22692-a2af01438a93.herokuapp.com/
+
   
   
   ## Credits

@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
-const routes = require('./routes');
 //I Added authMiddleware and Apollo Server
 const { ApolloServer } = require('apollo-server-express');
 const { authMiddleware } = require('./utils/auth');
@@ -38,11 +37,5 @@ const startApolloServer = async () => {
     })
   })
   };
-
-app.use(routes);
-
-db.once('open', () => {
-  app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
-});
 
 startApolloServer()

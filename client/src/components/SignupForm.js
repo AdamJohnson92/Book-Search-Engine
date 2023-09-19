@@ -10,7 +10,6 @@ const SignupForm = () => {
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
 
  
-
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
