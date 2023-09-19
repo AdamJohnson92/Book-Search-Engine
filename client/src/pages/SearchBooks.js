@@ -43,6 +43,9 @@ const SearchBooks = () => {
       const response = await searchGoogleBooks(searchInput);
 
       if (!response.ok) {
+        console.error(response)
+        const errorData=await response.json()
+        console.log(errorData)
         throw new Error('something went wrong!');
       }
 
