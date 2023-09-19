@@ -28,9 +28,16 @@ const resolvers = {
       return { token, user };
     },
     addUser: async (parent, args) => {
-      const user = await User.create(args);
+      try{  
+        console.log("good to go!")
+        const user = await User.create(args);
       const token = signToken(user);
+    
       return { token, user };
+      } catch (error){
+        console.error(error)
+      }
+      
     },
     saveBook: async(parent, {authors, description, bookId, image, link, title}) => {
       const book = await Book.create({
